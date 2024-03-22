@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 class AVLNode {
     String data;
     AVLNode left;
@@ -103,10 +107,13 @@ class AVLTree {
 
         String[] parts = node.data.split("\t");
         String term = parts[0];
+        String statement = parts[1];
+        String score = parts[2];
 
         int comparisonResult = searchTerm.compareTo(term);
         if (comparisonResult == 0) {
             searchOpCount++;
+            System.out.println(term + ": " + statement + " (" + score + ")");
             return true;
         } else if (comparisonResult < 0) {
             searchOpCount++;
