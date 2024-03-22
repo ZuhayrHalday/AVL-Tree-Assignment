@@ -56,10 +56,11 @@ class AVLTree {
             insertOpCount++;
             return new AVLNode(data);
         }
-
         if (data.compareTo(node.data) < 0) {
+            insertOpCount++;
             node.left = insertRec(node.left, data);
         } else if (data.compareTo(node.data) > 0) {
+            insertOpCount++;
             node.right = insertRec(node.right, data);
         } else {
             return node;
@@ -258,8 +259,8 @@ public class GenericsKbAVLApp {
 
         searchQueries(queryFile);
 
-        System.out.println("Search Operations: " + avlTree.getSearchOpCount());
-        System.out.println("Insert Operations: " + avlTree.getInsertOpCount());
+        System.out.println("Total Search Operations: " + avlTree.getSearchOpCount());
+        System.out.println("Total Insert Operations: " + avlTree.getInsertOpCount());
     }
 
     /**

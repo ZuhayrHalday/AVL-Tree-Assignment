@@ -49,6 +49,10 @@ class AVLTreeExperiment {
         searchOpCount = 0;
     }
 
+    public void resetInsertOpCount() {
+        insertOpCount = 0;
+    }
+
     public void insert(String data) {
         root = insertRec(root, data);
         if (!isBalanced(root)) {
@@ -61,10 +65,12 @@ class AVLTreeExperiment {
             insertOpCount++;
             return new AVLNodeExperiment(data);
         }
-
-        if (data.compareTo(node.data) < 0) {
+        int comparisonResult = data.compareTo(node.data);
+        if (comparisonResult < 0) {
+            insertOpCount++;
             node.left = insertRec(node.left, data);
-        } else if (data.compareTo(node.data) > 0) {
+        } else if (comparisonResult > 0) {
+            insertOpCount++;
             node.right = insertRec(node.right, data);
         } else {
             return node;
@@ -259,15 +265,19 @@ public class Experimentation {
                 for (int i = 0; i < 10; i++) {
                     AVLTreeExperiment avl = new AVLTreeExperiment();
                     List<String> subset = generateRandomSubset(size, dataset);
+                    int insertOpCount = 0;
+                    int searchOpCount = 0;
 
                     // Load data into AVL tree
                     for (String item : subset) {
                         avl.insert(item);
+                        insertOpCount = avl.getInsertOpCount();
+                        insertOpCounts.add(insertOpCount);
+                        avl.resetInsertOpCount();
                     }
 
                     // Perform searches and record operation counts
-                    int insertOpCount = avl.getInsertOpCount();
-                    int searchOpCount = 0;
+                    
                     try {
                         Scanner scanner = new Scanner(new File(queryFile));
                         while (scanner.hasNextLine()) {
@@ -283,7 +293,6 @@ public class Experimentation {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    insertOpCounts.add(insertOpCount);
                     searchOpCounts.add(searchOpCount);
                 }
 

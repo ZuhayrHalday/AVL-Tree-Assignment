@@ -1,0 +1,12 @@
+tough guy	A tough guy is a rowdy	1.0
+superhighway	Superhighways have (part) traffic lanes.	1.0
+laurel wreath	A laurel wreath is a wreath	1.0
+cassia	Cassias are fast growing plants.	0.7749528884887695
+unique approach	Unique approaches use techniques.	1.0
+soul	Soul denotes the breath of life of the body.	0.718323290348053
+elevate blood pressure	Elevate blood pressure stimulates secretion.	1.0
+different molecule	Different molecules absorb different colors of light, depending on their electronic structure.	0.7221203446388245
+mountain peak	Mountain peaks are part of mountains.	1.0
+plectrum	A plectrum is a device	1.0
+capillary wave	Capillary waves are small waves with periods of less than one-tenth of a second.	0.7531203031539917
+soil bacteria	Soil bacteria convert nitrogen gas to a usable form for plants.	0.7702853083610535
