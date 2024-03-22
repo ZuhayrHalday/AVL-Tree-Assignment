@@ -28,6 +28,58 @@ class AVLTree {
         root = null;
     }
 
+    public void insert(String data) {
+        root = insertRec(root, data);
+        if (!isBalanced(root)) {
+            root = balance(root);
+        }
+    }
+
+    private AVLNode insertRec(AVLNode node, String data) {
+        if (node == null) {
+            insertOpCount++;
+            return new AVLNode(data);
+        }
+
+        if (data.compareTo(node.data) < 0) {
+            node.left = insertRec(node.left, data);
+        } else if (data.compareTo(node.data) > 0) {
+            node.right = insertRec(node.right, data);
+        } else {
+            return node;
+        }
+
+        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+
+        int balance = getBalanceFactor(node);
+
+        // If node becomes unbalanced after new data is inserted, then there are 4 cases
+
+        // Left Left Case
+        if (balance > 1 && data.compareTo(node.left.data) < 0) {
+            return rightRotate(node);
+        }
+
+        // Right Right Case
+        if (balance < -1 && data.compareTo(node.right.data) > 0) {
+            return leftRotate(node);
+        }
+
+        // Left Right Case
+        if (balance > 1 && data.compareTo(node.left.data) > 0) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+
+        // Right Left Case
+        if (balance < -1 && data.compareTo(node.right.data) < 0) {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
+
+        return node;
+    }
+
     /**
      * Calculates the height of a node.
      *
@@ -108,17 +160,15 @@ class AVLTree {
             return null;
         }
 
-        // Calculate the balance factor for the current node
         int balanceFactor = getBalanceFactor(node);
 
         // Left subtree is heavier
         if (balanceFactor > 1) {
-            // Left-Left case: Perform right rotation on the current node
+            // Left-Left case
             if (getHeight(node.left.left) >= getHeight(node.left.right)) {
                 return rightRotate(node);
             }
-            // Left-Right case: Perform left rotation on the left child followed by right
-            // rotation on the current node
+            // Left-Right case
             else {
                 node.left = leftRotate(node.left);
                 return rightRotate(node);
@@ -126,18 +176,17 @@ class AVLTree {
         }
         // Right subtree is heavier
         else if (balanceFactor < -1) {
-            // Right-Right case: Perform left rotation on the current node
+            // Right-Right case
             if (getHeight(node.right.right) >= getHeight(node.right.left)) {
                 return leftRotate(node);
             }
-            // Right-Left case: Perform right rotation on the right child followed by left
-            // rotation on the current node
+            // Right-Left case
             else {
                 node.right = rightRotate(node.right);
                 return leftRotate(node);
             }
         }
-        return node; // Node is already balanced
+        return node;
     }
 }
 
