@@ -42,7 +42,7 @@ class AVLTree {
     }
 
     /**
-     * Calculates the balance factor of a node.
+     * Calculates the balance factor for a given node.
      *
      * @param node The node to calculate the balance factor for.
      * @return The balance factor of the node.
@@ -96,6 +96,48 @@ class AVLTree {
 
         // Return new root
         return y;
+    }
+
+    private boolean isBalanced(AVLNode node) {
+        int balanceFactor = getBalanceFactor(node);
+        return balanceFactor >= -1 && balanceFactor <= 1;
+    }
+
+    private AVLNode balance(AVLNode node) {
+        if (node == null) {
+            return null;
+        }
+
+        // Calculate the balance factor for the current node
+        int balanceFactor = getBalanceFactor(node);
+
+        // Left subtree is heavier
+        if (balanceFactor > 1) {
+            // Left-Left case: Perform right rotation on the current node
+            if (getHeight(node.left.left) >= getHeight(node.left.right)) {
+                return rightRotate(node);
+            }
+            // Left-Right case: Perform left rotation on the left child followed by right
+            // rotation on the current node
+            else {
+                node.left = leftRotate(node.left);
+                return rightRotate(node);
+            }
+        }
+        // Right subtree is heavier
+        else if (balanceFactor < -1) {
+            // Right-Right case: Perform left rotation on the current node
+            if (getHeight(node.right.right) >= getHeight(node.right.left)) {
+                return leftRotate(node);
+            }
+            // Right-Left case: Perform right rotation on the right child followed by left
+            // rotation on the current node
+            else {
+                node.right = rightRotate(node.right);
+                return leftRotate(node);
+            }
+        }
+        return node; // Node is already balanced
     }
 }
 
