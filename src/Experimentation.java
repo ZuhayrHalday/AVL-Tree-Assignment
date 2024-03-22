@@ -237,8 +237,7 @@ class AVLTreeExperiment {
 }
 
 public class Experimentation {
-    private static final int[] datasetSizes = { 10, 100, 1000, 10000, 100000 }; // Dataset sizes
-    private static final int numQueries = 10; // Number of queries
+    private static final int[] datasetSizes = { 1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000 }; // Dataset sizes
     private static final String queryFile = "GenericsKB-queries.txt"; // Query file
 
     public static void main(String[] args) {
@@ -258,7 +257,7 @@ public class Experimentation {
 
                 // Perform experiment for current dataset size
                 for (int i = 0; i < 10; i++) {
-                    AVLTree avl = new AVLTree();
+                    AVLTreeExperiment avl = new AVLTreeExperiment();
                     List<String> subset = generateRandomSubset(size, dataset);
 
                     // Load data into AVL tree
