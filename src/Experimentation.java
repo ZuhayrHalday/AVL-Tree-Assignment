@@ -261,7 +261,7 @@ public class Experimentation {
             // FileWriter to write results to a file
             FileWriter writer = new FileWriter("experimentation.txt");
             // Writing headers to the file
-            writer.write("Dataset Size\tInsert Min\tInsert Avg\tInsert Max\tSearch Min\tSearch Avg\tSearch Max\n");
+            writer.write("Dataset Size\tBest Insert\tAverage Insert\tWorst Insert\tBest Search\tAverage Search\tWorst Search\n");
 
             // Reading the dataset from file
             List<String> dataset = readDatasetFromFile("GenericsKB.txt");
