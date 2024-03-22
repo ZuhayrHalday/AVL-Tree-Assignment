@@ -40,10 +40,6 @@ class AVLTree {
         return insertOpCount;
     }
 
-    public void resetSearchOpCount() {
-        searchOpCount = 0;
-    }
-
     public void insert(String data) {
         root = insertRec(root, data);
         if (!isBalanced(root)) {

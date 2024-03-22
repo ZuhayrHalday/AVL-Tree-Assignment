@@ -250,21 +250,19 @@ public class Experimentation {
         try {
             FileWriter writer = new FileWriter("experimentation.txt");
 
-            // Write column headers
-            writer.write("Dataset Size\tInsert Min\tInsert Avg\tInsert Max\tSearch Min\tSearch Avg\tSearch Max\n");
-
             // Read dataset from file
             List<String> dataset = readDatasetFromFile("GenericsKB.txt");
 
             // Iterate over dataset sizes
             for (int size : datasetSizes) {
-                List<Integer> insertOpCounts = new ArrayList<>();
-                List<Integer> searchOpCounts = new ArrayList<>();
+                List<Integer> insertOpCountValues = new ArrayList<>();
+                List<Integer> searchOpCountValues = new ArrayList<>();
 
                 // Perform experiment for current dataset size
                 for (int i = 0; i < 10; i++) {
                     AVLTreeExperiment avl = new AVLTreeExperiment();
                     List<String> subset = generateRandomSubset(size, dataset);
+                    //Initialize opCount variables
                     int insertOpCount = 0;
                     int searchOpCount = 0;
 
@@ -272,12 +270,10 @@ public class Experimentation {
                     for (String item : subset) {
                         avl.insert(item);
                         insertOpCount = avl.getInsertOpCount();
-                        insertOpCounts.add(insertOpCount);
+                        insertOpCountValues.add(insertOpCount);
                         avl.resetInsertOpCount();
                     }
 
-                    // Perform searches and record operation counts
-                    
                     try {
                         Scanner scanner = new Scanner(new File(queryFile));
                         while (scanner.hasNextLine()) {
@@ -293,18 +289,20 @@ public class Experimentation {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                    searchOpCounts.add(searchOpCount);
+                    searchOpCountValues.add(searchOpCount);
                 }
 
-                // Calculate min, max, and average of operation counts
-                int minInsertOpCount = insertOpCounts.stream().min(Integer::compareTo).orElse(0);
-                int maxInsertOpCount = insertOpCounts.stream().max(Integer::compareTo).orElse(0);
-                int avgInsertOpCount = (int) insertOpCounts.stream().mapToInt(Integer::intValue).average().orElse(0);
-                int minSearchOpCount = searchOpCounts.stream().min(Integer::compareTo).orElse(0);
-                int maxSearchOpCount = searchOpCounts.stream().max(Integer::compareTo).orElse(0);
-                int avgSearchOpCount = (int) searchOpCounts.stream().mapToInt(Integer::intValue).average().orElse(0);
+                // Calculation of worst case (max), best case (min), and avg case
+                //code derived from StackOverflow
+                int minInsertOpCount = insertOpCountValues.stream().min(Integer::compareTo).orElse(0);
+                int maxInsertOpCount = insertOpCountValues.stream().max(Integer::compareTo).orElse(0);
+                int avgInsertOpCount = (int) insertOpCountValues.stream().mapToInt(Integer::intValue).average().orElse(0);
+                int minSearchOpCount = searchOpCountValues.stream().min(Integer::compareTo).orElse(0);
+                int maxSearchOpCount = searchOpCountValues.stream().max(Integer::compareTo).orElse(0);
+                int avgSearchOpCount = (int) searchOpCountValues.stream().mapToInt(Integer::intValue).average().orElse(0);
 
                 // Write experiment results to file
+                writer.write("Dataset Size\tInsert Min\tInsert Avg\tInsert Max\tSearch Min\tSearch Avg\tSearch Max\n");
                 writer.write(String.format("%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\n", size, minInsertOpCount, avgInsertOpCount,
                         maxInsertOpCount, minSearchOpCount, avgSearchOpCount, maxSearchOpCount));
             }
