@@ -2,16 +2,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Class representing a node in an AVL tree.
+ */
 class AVLNode {
-    String data;
-    AVLNode left;
-    AVLNode right;
-    int height;
+    String data; // Data stored in the node
+    AVLNode left; // Reference to the left child node
+    AVLNode right; // Reference to the right child node
+    int height; // Height of the node in the AVL tree
 
     /**
      * Constructs an AVLNode with the given data.
      *
-     * @param data The data to be stored in the node.
+     * @param data Data that will be stored in the node.
      */
     public AVLNode(String data) {
         this.data = data;
@@ -20,10 +23,13 @@ class AVLNode {
     }
 }
 
+/**
+ * Class representing an AVL tree.
+ */
 class AVLTree {
-    AVLNode root;
-    private int searchOpCount = 0;
-    private int insertOpCount = 0;
+    AVLNode root; // Root node of the AVL tree
+    private int searchOpCount = 0; // Counter for search operations
+    private int insertOpCount = 0; // Counter for insert operations
 
     /**
      * Constructs an empty AVL tree.
@@ -40,6 +46,11 @@ class AVLTree {
         return insertOpCount;
     }
 
+    /**
+     * Inserts a new node with the given data into the AVL tree.
+     *
+     * @param data Data to be inserted.
+     */
     public void insert(String data) {
         root = insertRec(root, data);
         if (!isBalanced(root)) {
@@ -59,7 +70,7 @@ class AVLTree {
             insertOpCount++;
             node.right = insertRec(node.right, data);
         } else {
-            return node;
+            return node; // Duplicate data, no insertion needed
         }
 
         node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
@@ -93,15 +104,22 @@ class AVLTree {
         return node;
     }
 
+    /**
+     * Searches for a term in the AVL tree.
+     *
+     * @param searchTerm The term to search for.
+     * @return true if the term is found, false otherwise.
+     */
     public boolean search(String searchTerm) {
         return searchRec(root, searchTerm);
     }
 
     private boolean searchRec(AVLNode node, String searchTerm) {
         if (node == null) {
-            return false;
+            return false; // Base case: node not found
         }
 
+        // Extract components from the node data
         String[] parts = node.data.split("\t");
         String term = parts[0];
         String statement = parts[1];
@@ -111,13 +129,13 @@ class AVLTree {
         if (comparisonResult == 0) {
             searchOpCount++;
             System.out.println(term + ": " + statement + " (" + score + ")");
-            return true;
+            return true; // Term found
         } else if (comparisonResult < 0) {
             searchOpCount++;
-            return searchRec(node.left, searchTerm);
+            return searchRec(node.left, searchTerm); // Search left subtree
         } else {
             searchOpCount++;
-            return searchRec(node.right, searchTerm);
+            return searchRec(node.right, searchTerm); // Search right subtree
         }
     }
 
@@ -135,7 +153,7 @@ class AVLTree {
     }
 
     /**
-     * Calculates the balance factor for a given node.
+     * Calculates the balance factor of a node.
      *
      * @param node The node to calculate the balance factor for.
      * @return The balance factor of the node.
@@ -148,7 +166,7 @@ class AVLTree {
     }
 
     /**
-     * Rotates a node on the AVL tree left
+     *  Right rotates a node on the AVL tree.
      *
      * @param y The node to perform the rotation on.
      * @return The new root node after rotation.
@@ -170,7 +188,7 @@ class AVLTree {
     }
 
     /**
-     * Rotates a node on the AVL tree left.
+     *  Left-rotates a node on the AVL tree.
      *
      * @param x The node to perform the rotation on.
      * @return The new root node after rotation.
@@ -231,12 +249,15 @@ class AVLTree {
     }
 }
 
+/**
+ * Main class to run the AVL tree application.
+ */
 public class GenericsKbAVLApp {
     private static AVLTree avlTree;
 
     /**
      * Main method to run the AVL tree application.
-     * 
+     *
      * @param args The command line arguments.
      */
     public static void main(String[] args) {
@@ -260,7 +281,7 @@ public class GenericsKbAVLApp {
     }
 
     /**
-     * Loads the knowledge base from the specified file.
+     * Reads and inserts the knowledge base from the specified file into an AVL Tree.
      * 
      * @param fileName The name of the file containing the knowledge base.
      */
@@ -283,7 +304,7 @@ public class GenericsKbAVLApp {
     }
 
     /**
-     * Perform searches based on queries from the specified file.
+     * Performs AVL Tree searches based on queries from the specified file.
      * 
      * @param fileName The name of the file containing the queries.
      */
