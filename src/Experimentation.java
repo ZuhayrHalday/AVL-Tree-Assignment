@@ -237,15 +237,15 @@ class AVLTreeExperiment {
 }
 
 public class Experimentation {
-    private static final int[] datasetSizes = { 1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000 }; // Dataset sizes
-    private static final String queryFile = "GenericsKB-queries.txt"; // Query file
+    private static final String queryFile = "GenericsKB-queries.txt";
+    private static final int[] datasetSizes = { 1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000 };
 
     public static void main(String[] args) {
         try {
-            FileWriter writer = new FileWriter("experiment_results.txt");
+            FileWriter writer = new FileWriter("experimentation.txt");
 
             // Write column headers
-            writer.write("Dataset Size\tInsert Min\tInsert Max\tInsert Avg\tSearch Min\tSearch Max\tSearch Avg\n");
+            writer.write("Dataset Size\tInsert Min\tInsert Avg\tInsert Max\tSearch Min\tSearch Avg\tSearch Max\n");
 
             // Read dataset from file
             List<String> dataset = readDatasetFromFile("GenericsKB.txt");
@@ -296,12 +296,12 @@ public class Experimentation {
                 int avgSearchOpCount = (int) searchOpCounts.stream().mapToInt(Integer::intValue).average().orElse(0);
 
                 // Write experiment results to file
-                writer.write(String.format("%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\n", size, minInsertOpCount,
-                        maxInsertOpCount, avgInsertOpCount, minSearchOpCount, maxSearchOpCount, avgSearchOpCount));
+                writer.write(String.format("%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\n", size, minInsertOpCount, avgInsertOpCount,
+                        maxInsertOpCount, minSearchOpCount, avgSearchOpCount, maxSearchOpCount));
             }
 
             writer.close();
-            System.out.println("Experiment completed. Results written to experiment_results.txt.");
+            System.out.println("Experiment completed. Data stored in experimentation.txt.");
         } catch (IOException e) {
             e.printStackTrace();
         }
