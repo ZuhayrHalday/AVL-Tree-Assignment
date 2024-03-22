@@ -80,6 +80,31 @@ class AVLTree {
         return node;
     }
 
+    public boolean search(String searchTerm) {
+        return searchRec(root, searchTerm);
+    }
+
+    private boolean searchRec(AVLNode node, String searchTerm) {
+        if (node == null) {
+            return false;
+        }
+
+        String[] parts = node.data.split("\t");
+        String term = parts[0];
+
+        int comparisonResult = searchTerm.compareTo(term);
+        if (comparisonResult == 0) {
+            searchOpCount++;
+            return true;
+        } else if (comparisonResult < 0) {
+            searchOpCount++;
+            return searchRec(node.left, searchTerm);
+        } else {
+            searchOpCount++;
+            return searchRec(node.right, searchTerm);
+        }
+    }
+
     /**
      * Calculates the height of a node.
      *
