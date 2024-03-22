@@ -159,7 +159,7 @@ class AVLTreeExperiment {
     }
 
     /**
-     * Rotates a node on the AVL tree left
+     * Rotates a node on the AVL tree right.
      *
      * @param y The node to perform the rotation on.
      * @return The new root node after rotation.
@@ -242,31 +242,43 @@ class AVLTreeExperiment {
     }
 }
 
+/**
+ * Class for conducting experimentation on AVL tree performance.
+ */
 public class Experimentation {
+    // File containing queries
     private static final String queryFile = "GenericsKB-queries.txt";
-    private static final int[] datasetSizes = { 1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000 };
+    // Different dataset sizes for experimentation
+    private static final int[] datasetSizes = {1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000};
 
+    /**
+     * Main method to run the experimentation.
+     *
+     * @param args The command line arguments (not used).
+     */
     public static void main(String[] args) {
         try {
+            // FileWriter to write results to a file
             FileWriter writer = new FileWriter("experimentation.txt");
+            // Writing headers to the file
+            writer.write("Dataset Size\tInsert Min\tInsert Avg\tInsert Max\tSearch Min\tSearch Avg\tSearch Max\n");
 
-            // Read dataset from file
+            // Reading the dataset from file
             List<String> dataset = readDatasetFromFile("GenericsKB.txt");
 
-            // Iterate over dataset sizes
+            // Iterating over different dataset sizes
             for (int size : datasetSizes) {
                 List<Integer> insertOpCountValues = new ArrayList<>();
                 List<Integer> searchOpCountValues = new ArrayList<>();
 
-                // Perform experiment for current dataset size
+                // Performing experiments multiple times for statistical analysis
                 for (int i = 0; i < 10; i++) {
                     AVLTreeExperiment avl = new AVLTreeExperiment();
                     List<String> subset = generateRandomSubset(size, dataset);
-                    //Initialize opCount variables
                     int insertOpCount = 0;
                     int searchOpCount = 0;
 
-                    // Load data into AVL tree
+                    // Inserting items into AVL tree
                     for (String item : subset) {
                         avl.insert(item);
                         insertOpCount = avl.getInsertOpCount();
@@ -274,15 +286,15 @@ public class Experimentation {
                         avl.resetInsertOpCount();
                     }
 
+                    // Searching for queries in AVL tree
                     try {
                         Scanner scanner = new Scanner(new File(queryFile));
                         while (scanner.hasNextLine()) {
                             String query = scanner.nextLine().trim();
                             boolean found = avl.search(query);
                             if (found) {
-                                searchOpCount = avl.getSearchOpCount(); // Add current search count
+                                searchOpCount = avl.getSearchOpCount();
                             }
-                            // Reset search operation count for the next iteration
                             avl.resetSearchOpCount();
                         }
                         scanner.close();
@@ -293,7 +305,6 @@ public class Experimentation {
                 }
 
                 // Calculation of worst case (max), best case (min), and avg case
-                //code derived from StackOverflow
                 int minInsertOpCount = insertOpCountValues.stream().min(Integer::compareTo).orElse(0);
                 int maxInsertOpCount = insertOpCountValues.stream().max(Integer::compareTo).orElse(0);
                 int avgInsertOpCount = (int) insertOpCountValues.stream().mapToInt(Integer::intValue).average().orElse(0);
@@ -301,12 +312,12 @@ public class Experimentation {
                 int maxSearchOpCount = searchOpCountValues.stream().max(Integer::compareTo).orElse(0);
                 int avgSearchOpCount = (int) searchOpCountValues.stream().mapToInt(Integer::intValue).average().orElse(0);
 
-                // Write experiment results to file
-                writer.write("Dataset Size\tInsert Min\tInsert Avg\tInsert Max\tSearch Min\tSearch Avg\tSearch Max\n");
+                // Writing results to file
                 writer.write(String.format("%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d\n", size, minInsertOpCount, avgInsertOpCount,
                         maxInsertOpCount, minSearchOpCount, avgSearchOpCount, maxSearchOpCount));
             }
 
+            // Closing the FileWriter
             writer.close();
             System.out.println("Experiment completed. Data stored in experimentation.txt.");
         } catch (IOException e) {
@@ -314,6 +325,12 @@ public class Experimentation {
         }
     }
 
+    /**
+     * Reads dataset from a file.
+     *
+     * @param fileName The name of the file containing the dataset.
+     * @return List of strings representing the dataset.
+     */
     private static List<String> readDatasetFromFile(String fileName) {
         List<String> dataset = new ArrayList<>();
         try {
@@ -328,6 +345,13 @@ public class Experimentation {
         return dataset;
     }
 
+    /**
+     * Generates a random subset of the dataset.
+     *
+     * @param size    The size of the subset to generate.
+     * @param dataset The dataset from which to generate the subset.
+     * @return List of strings representing the generated subset.
+     */
     private static List<String> generateRandomSubset(int size, List<String> dataset) {
         List<String> subset = new ArrayList<>();
         Random random = new Random();
