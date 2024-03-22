@@ -235,7 +235,75 @@ class AVLTree {
 }
 
 public class GenericsKbAVLApp {
-    public static void main(String[] args) throws Exception {
-        
+    private static AVLTree avlTree;
+
+    /**
+     * Main method to run the AVL tree application.
+     * 
+     * @param args The command line arguments.
+     */
+    public static void main(String[] args) {
+        avlTree = new AVLTree();
+
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("Enter the name of the knowledge base file: ");
+        String kbFile = keyboard.nextLine();
+
+        System.out.print("Enter the name of the query file: ");
+        String queryFile = keyboard.nextLine();
+
+        keyboard.close();
+
+        readKB(kbFile);
+
+        searchQueries(queryFile);
+
+        System.out.println("Search Operations: " + avlTree.getSearchOpCount());
+        System.out.println("Insert Operations: " + avlTree.getInsertOpCount());
+    }
+
+    /**
+     * Loads the knowledge base from the specified file.
+     * 
+     * @param fileName The name of the file containing the knowledge base.
+     */
+    private static void readKB(String fileName) {
+        try {
+            Scanner file = new Scanner(new File(fileName));
+            while (file.hasNextLine()) {
+                String line = file.nextLine();
+
+                String[] parts = line.split("\t");
+                if (parts.length == 3) {
+                    avlTree.insert(line);
+                }
+            }
+            System.out.println("\nKnowledge base loaded successfully.\n");
+            file.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("\nError - File not found: " + fileName + "\n");
+        }
+    }
+
+    /**
+     * Perform searches based on queries from the specified file.
+     * 
+     * @param fileName The name of the file containing the queries.
+     */
+    private static void searchQueries(String fileName) {
+        try {
+            Scanner file = new Scanner(new File(fileName));
+            while (file.hasNextLine()) {
+                String searchTerm = file.nextLine().trim();
+                boolean found = avlTree.search(searchTerm);
+                if (!found) {
+                    System.out.println("Term not found: \"" + searchTerm +"\"");
+                }
+                System.out.println();
+            }
+            file.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("\nError - File not found: " + fileName + "\n");
+        }
     }
 }
