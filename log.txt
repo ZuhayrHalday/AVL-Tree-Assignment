@@ -1,0 +1,155 @@
+commit 516913596ae8ab05f14fc7da21620722a2cf0381
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 15:15:46 2024 +0200
+
+    Added javadocs and Makefile
+
+commit c342019df212075b1d8a207114c568f79428ab1b
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 14:48:39 2024 +0200
+
+    Added Student Number to top of each program.
+
+commit 8479bac7018ae418926198922a46b60ed0e74ecb
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 14:45:40 2024 +0200
+
+    Formatting changes.
+
+commit 59f22ece007b07d0ef89eb0f598d79f737a119ee
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 14:42:15 2024 +0200
+
+    Added more comments + javadoc comments for Experimentation program.
+
+commit 84c2bd96a55680f7d1d7989ec91ea575138e6723
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 14:32:51 2024 +0200
+
+    Added javadoc comments.
+
+commit 40c75da7d67548f52733c6b33028cb7d77dc7d5e
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 14:00:06 2024 +0200
+
+    Formatting + comments.
+
+commit 7b4488d7aea6f51a799b8577523a43b419d045dc
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 06:46:19 2024 +0200
+
+    Fixed error in calculating Insert time complexity for Experimentation.
+
+commit 8418dcf346668eefbbffad36be0f92361d122f24
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 05:29:30 2024 +0200
+
+    Minor formatting changes, changed how experimentation results were output to textfile.
+
+commit 7c66f8b9489a456ff970f1dea9ac6e04a7f06107
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:56:03 2024 +0200
+
+    Altered dataset sizes for experimentation
+
+commit 564e640510825922f20e3a283e02d83f04f5964e
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:54:32 2024 +0200
+
+    Bug fixes with Experimentation. AVL Tree class in Experimentation was being confused with that of the main prgram.
+
+commit 220af320f37579d1c8544a48cb4d13078a079a17
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:44:07 2024 +0200
+
+    Added imported classes
+
+commit b6eb7e9c5190adb54f60538c1f6828c646d51842
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:33:35 2024 +0200
+
+    Formatting
+
+commit 33609b76173a4c501065f508bd7f2a18b0587c7f
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:30:40 2024 +0200
+
+    Copied AVLNode and AVLTree classes into Experimentation program.
+
+commit 4884e50adce7044672ee06aeda77d48980d44c40
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:29:47 2024 +0200
+
+    Added class for Experimentation
+
+commit 022f44467a1d71771c2058f407e6f5999ca45d9a
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:29:31 2024 +0200
+
+    Created Experimentation program, seperate to the main GenericsKbAVLApp program.
+
+commit dbb9ea0d0690b2b5b8eb9ae4f61c8851254797d1
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:19:31 2024 +0200
+
+    Added main function.
+
+commit 7cf48951724171d11b8b17b635ba0d3a84ea9f69
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 03:03:49 2024 +0200
+
+    Search function now prints data to terminal output.
+
+commit c8eca7d737913d1dba85035cc06c54dc8af8542a
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 02:55:39 2024 +0200
+
+    Added getter functions to AVL tree data structure.
+
+commit 22996dbf2e131bcbee73b0ac159bd5a40d01ab54
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 02:53:32 2024 +0200
+
+    Implemented AVL search algorithm
+
+commit 459930a225ca65ba83a4eb0bee6939462007c3eb
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 02:40:52 2024 +0200
+
+    Added insert functionality to the AVL tree class, with instrumentation to count comparisons.
+
+commit 56babcd4f5351701ffccd8b256aa57f3b337c952
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 02:21:44 2024 +0200
+
+    Added utility functions and balance function to balance the AVL tree.
+
+commit fe2ffa4b2f372650a67ee88aeac95e5cdcc7f8bf
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 02:06:53 2024 +0200
+
+    Added rotation functions for the AVL tree structure from lecture notes.
+
+commit 46ffaed9d4917f5e1b87e70422d78b1d6257efcb
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 01:54:24 2024 +0200
+
+    Added a AVL Tree structure and constructor for a new AVL data structure
+
+commit 7e07c544720b1161ef93dcf5af5202f898b3460a
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 01:52:08 2024 +0200
+
+    Added AVL Node Structure
+
+commit 9fddc563c1c52c425f8d68de70faa29cabbb1c4e
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Fri Mar 22 01:47:42 2024 +0200
+
+    Added .txt files
+
+commit 9ff7ac01ddd70a8cea121bc0b4ef949c5d81708c
+Author: ZuhayrHalday <halday.zuhayr@gmail.com>
+Date:   Tue Mar 19 12:19:18 2024 +0200
+
+    First Commit

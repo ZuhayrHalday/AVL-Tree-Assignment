@@ -251,7 +251,7 @@ public class Experimentation {
     // File containing queries
     private static final String queryFile = "GenericsKB-queries.txt";
     // Different dataset sizes for experimentation
-    private static final int[] datasetSizes = {1, 5, 10, 50, 100, 500, 1000, 5000, 10000, 50000};
+    private static final int[] datasetSizes = {5, 50, 500, 5000, 50000};
 
     /**
      * Main method to run the experimentation.

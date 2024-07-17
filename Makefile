@@ -9,3 +9,6 @@ run-Experiment:
 
 run-Generics:
 	java -cp bin GenericsKbAVLApp
+
+clean:
+	rm -rf bin doc
