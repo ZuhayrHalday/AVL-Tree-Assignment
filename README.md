@@ -1,4 +1,4 @@
-## Technical Specifications
+## Generics Knowledge Base AVL Tree Application
 
 ### Program Description
 
